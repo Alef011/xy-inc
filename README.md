@@ -33,4 +33,8 @@ Feito apenas um rascunho, no ```PoiController.js```.
 ## Screenshots
  - Lista
  
+ ![lista](https://github.com/Alef011/xy-inc/blob/master/insomnia-lista.png)
+ 
  - Cadastro
+ 
+ ![cadastro](https://github.com/Alef011/xy-inc/blob/master/insomnia-cadastro.png)
