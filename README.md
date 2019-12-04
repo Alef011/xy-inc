@@ -13,7 +13,7 @@ em uma base de dados. Utilizei PostgreSQL, criei a imagem via  ```docker run --n
 - Serviço para listar todos os POIs cadastrados. Utilzei Insomnia pra enviar as requisições em formato ```Json```.
 
 - Serviço para listar POIs por proximidade. Este serviço receberá uma coordenada X e uma coordenada Y, especificando um ponto de referência, em como uma distância máxima (dmax) em metros. O serviço deverá retornar todos os POIs da base de dados que estejam a uma distância menor ou igual a d-max a partir do ponto de referência. Exemplo:
- ### Base de Dados:
+ ### Base de Dados
 'Lanchonete' (x=27, y=12)
 'Posto' (x=31, y=18)
 'Joalheria' (x=15, y=12)
@@ -38,3 +38,6 @@ Feito apenas um rascunho, no ```PoiController.js```.
  - Cadastro
  
  ![cadastro](https://github.com/Alef011/xy-inc/blob/master/insomnia-cadastro.png)
+ 
+ - Base de dados
+ ![basedados](https://github.com/Alef011/xy-inc/blob/master/postbird.png)
