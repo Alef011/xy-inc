@@ -31,3 +31,6 @@ Feito apenas um rascunho, no ```PoiController.js```.
 - Sequelize (Utilizei PostgreSQL);
 
 ## Screenshots
+ - Lista
+ 
+ - Cadastro
