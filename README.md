@@ -8,7 +8,7 @@ promete auxiliar pessoas na localização de ponto de interesse (POIs).
 
 - Serviço pra cadastrar pontos de interesse, com 3 atributos: Nome do POI, coordenada X
 (inteiro não negativo) e coordenada Y (inteiro não negativo). Os POIs foram armazenados
-em uma base de dados. Utilizei PostgreSQL, criei a imagem via  ```docker run --name xy -e POSTGRES_PASSWORD=inc -p 5432:5432 -d postgres:11``` e visualizei no Postbird.
+em uma base de dados. Utilizei PostgreSQL, criei a imagem via  ```docker run --name xy -e POSTGRES_PASSWORD=inc -p 5432:5432 -d postgres:11``` e visualizei no Postbird. Criei uma tabela utilizando ```yarn sequelize migration:create --name=create-pois```
  
 - Serviço para listar todos os POIs cadastrados. Utilzei Insomnia pra enviar as requisições em formato ```Json```.
 
