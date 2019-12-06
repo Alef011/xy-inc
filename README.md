@@ -22,7 +22,7 @@ em uma base de dados. Utilizei PostgreSQL, criei a imagem via  ```docker run --n
 'Supermercado' (x=23, y=6)
 'Churrascaria' (x=28, y=2)
 
-Feito apenas um rascunho, no ```PoiController.js```.
+Feito utilizando Math do JavaScript, na pasta ```Lib/getDistance.js```.
 
 ## Ferramentas Utilizadas 
 
@@ -42,3 +42,11 @@ Feito apenas um rascunho, no ```PoiController.js```.
  - Base de dados
  
  ![basedados](https://github.com/Alef011/xy-inc/blob/master/postbird.png)
+ 
+ - Validando somente coordenadas X,Y inteiros
+ 
+ ![validação]
+
+- Lista por Proximidade
+
+![proximidade]()
