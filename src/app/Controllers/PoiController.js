@@ -1,3 +1,7 @@
+import * as Yup from 'yup';
+
+import getDistance from '../Lib/getDistance';
+
 import Poi from '../Models/Poi';
 
 class PoiController {
@@ -11,54 +15,49 @@ class PoiController {
   }
 
   async show(req, res) {
-    return res.json({ ok: true });
-    // SELECT id,
-    // (6371 * acos(
-    //  cos( radians(-30.053831) )
-    //  * cos( radians( lat ) )
-    //  * cos( radians( lng ) - radians(-51.191810) )
-    //  + sin( radians(-30.053831) )
-    //  * sin( radians( lat ) )
-    //  )
-    // ) AS distancia
-    // FROM enderecos
-    // HAVING distancia < 25
-    // ORDER BY distancia ASC
-    // LIMIT 4;
+    const { coordinate_x, coordinate_y, metters } = req.query;
 
-    // const radiusKm = 6371; //raio aproximado do planeta em quilômetros
-    // const radiusMi = 3959; //raio aproximado do planeta em milhas
+    const positions = await Poi.findAll({
+      attributes: ['id', 'name', 'coordinate_x', 'coordinate_y'],
+    });
 
-    // converte graus para radianos
-    // Math.radians = function (degrees) {
-    // return degrees * Math.PI / 180;
-    // };
+    // const result = positions.map((p) => bd(x, y, p.coordinate_x, p.coordinate_y));
+    // verify if distance is agree with the search
+    const nearests = function getNearestLocations(location) {
+      const distance = getDistance(
+        coordinate_x,
+        coordinate_y,
+        location.coordinate_x,
+        location.coordinate_y
+      );
 
-    // calcula a distância entre pontos
-    // function calc(lat, lng) {
-    // const distance = (radiusKm * Math.acos(
-    // Math.cos(Math.radians(-30.053831))
-    // * Math.cos(Math.radians(lat))
-    // * Math.cos(Math.radians(lng) - Math.radians(-51.191810))
-    // + Math.sin(Math.radians(-30.053831))
-    // * Math.sin(Math.radians(lat)),
-    // ));
+      if (distance <= metters) {
+        return distance;
+      }
 
-    // return distance;
-    // }
+      return 0;
+    };
 
-    // pega a posição atual
-    // const myposition = calc(mylat, mylng);
-    // pega a posição mais próxima
-    // const bestPosition =  calc(lat, lng)
+    // filter nearests results to find nearests locations
+    const nearestsLocations = positions.filter(nearests);
 
-    // verifica se a posição mais próxima é menor que 10
-    // if(position < 10){
-    // return { all positions}
-    // }
+    return res.json(nearestsLocations);
   }
 
   async store(req, res) {
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      coordinate_x: Yup.number()
+        .positive()
+        .required(),
+      coordinate_y: Yup.number()
+        .positive()
+        .required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation fails.' });
+    }
     const { id, name, coordinate_x, coordinate_y } = await Poi.create(req.body);
 
     return res.json({
@@ -67,6 +66,12 @@ class PoiController {
       coordinate_x,
       coordinate_y,
     });
+  }
+
+  async delete(req, res) {
+    const position = await Poi.findByPk(req.params.id);
+
+    return res.json(position);
   }
 }
 
