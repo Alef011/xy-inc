@@ -45,7 +45,7 @@ Feito utilizando Math do JavaScript, na pasta ```Lib/getDistance.js```.
  
  - Validando somente coordenadas X,Y inteiros
  
- ![validação](https://github.com/Alef011/xy-inc/blob/master/apenas%20coordenadas%20X%2CY%20positivos.png)
+ ![validação]()
 
 - Lista por Proximidade
 
